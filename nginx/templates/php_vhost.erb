@@ -1,0 +1,27 @@
+## Сontrolled by puppet master
+#
+server {
+    server_name <%= @server_name %> www.<%= @server_name %>;
+<% @listen.each do |item| -%>
+    listen <%= item %>;
+<% end %>
+
+    access_log /var/log/nginx/<%= @server_name %>.access.log;
+    error_log /var/log/nginx/<%= @server_name %>.error.log;
+
+    root <%= @root_path %>;
+
+    location ~* \.(css|js|png|jpg|gif|html|htm|ico|swf)$ {
+        root <%= @static_path %>;
+        access_log off;
+    }
+
+    location / {
+        index  index.html index.htm;
+    }
+
+    location ~ \.php$ {
+        include /etc/nginx/fastcgi_params;
+        fastcgi_pass <%= @fastcgi_pass %>;
+    }
+}

@@ -5,7 +5,7 @@ class sysadmin-tools {
   $enhancers = [ "vim", "dnsutils", "wget", "htop",
                  "iftop", "tmux", "traceroute" ]
   package { $enhancers: ensure => "latest" }
-   
+
   exec { "vim_default_editor":
     command => "update-alternatives --set editor /usr/bin/vim.basic",
     path    => "/usr/bin/:/usr/local/bin/",

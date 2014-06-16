@@ -1,3 +1,4 @@
+*.swo
 *.swp
 *.a.pp
 *.a.erb

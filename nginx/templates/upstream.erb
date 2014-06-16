@@ -1,0 +1,13 @@
+## Сontrolled by puppet master
+#
+upstream <%= @title %> {
+<% if @ip_hash -%>
+    ip_hash;
+<% end %>
+<% members.each do |member| %>
+    server <%= member %>;
+<% end %>
+<% if @keepalive -%>
+    keepalive <%= @keepalive %>;
+    <% end %>
+}

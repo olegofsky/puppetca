@@ -14,7 +14,7 @@ define sysctrl (
       group   => 'root',
       notify  => Exec["sysctl_load_settings"]
     }
-  
+
     exec { "sysctl_load_settings":
       command     => "/sbin/sysctl -p /etc/sysctl.d/${sysctl_d_file}",
       refreshonly => true,
@@ -25,7 +25,7 @@ define sysctrl (
     file { "/etc/sysctl.d/${sysctl_d_file}":
       ensure => $ensure
     }
- 
+
   }
 }
 

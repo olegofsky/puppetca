@@ -1,0 +1,25 @@
+## Сontrolled by puppet master
+#
+server {
+    server_name <%= @server_name %> www.<%= @server_name %>;
+<% @listen.each do |item| -%>
+    listen <%= item %>;
+<% end %>
+
+    charset utf-8;
+
+    access_log  /var/log/nginx/<%= @server_name %>.access.log;
+    error_log   /var/log/nginx/<%= @server_name %>.error.log;
+
+    if ($host ~* www\.(.*)) {
+       set $host_without_www $1;
+       rewrite ^(.*)$ http://$host_without_www$1 permanent;
+    }
+
+    location / {
+        autoindex off;
+        root /var/www/<%= @server_name %>;
+        index index.html;
+    }
+}
+
