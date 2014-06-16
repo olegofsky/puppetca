@@ -1,0 +1,4 @@
+puppetca
+========
+
+puppet manifests
